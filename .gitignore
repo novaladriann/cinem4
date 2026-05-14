@@ -1,0 +1,17 @@
+# Local secrets / environment
+.env
+.env.*
+!.env.example
+
+# Composer dependencies
+/vendor/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+/tmp/

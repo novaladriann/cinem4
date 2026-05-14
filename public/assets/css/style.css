@@ -1,0 +1,1352 @@
+:root {
+  --c4-bg: #070b14;
+  --c4-nav: #071a33;
+  --c4-primary: #1f6fff;
+  --c4-card: rgba(255, 255, 255, 0.06);
+}
+
+body {
+  background: radial-gradient(1200px 600px at 50% -100px, rgba(31, 111, 255, 0.25), transparent 60%), var(--c4-bg);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cinem4-nav {
+  background: linear-gradient(180deg, #071a33, #061327);
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--c4-primary);
+  box-shadow: 0 0 18px rgba(31, 111, 255, 0.7);
+}
+.brand-text {
+  letter-spacing: 0.6px;
+}
+
+.hero {
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.hero .carousel-item {
+  min-height: 520px;
+  background-size: cover;
+  background-position: center;
+}
+.hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.1) 100%);
+}
+.hero .hero-content {
+  position: relative;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  z-index: 10;
+}
+
+.hero-search {
+  margin-top: -40px;
+  position: relative;
+  z-index: 3;
+}
+
+.card-glass {
+  background: var(--c4-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+}
+
+/* === CARD yang membesar (bukan gambar) === */
+.poster-card {
+  position: relative;
+  width: 100%;
+  height: 380px; /* penting: bikin ukuran stabil */
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+@media (max-width: 768px) {
+  .poster-card {
+    height: 300px;
+  }
+}
+
+.poster-card:hover {
+  transform: scale(1.06); /* kotaknya membesar */
+  border-color: rgba(31, 111, 255, 0.55);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+  z-index: 5;
+}
+
+/* gambar tetap rapi, tidak zoom/crop */
+.poster-media {
+  width: 100%;
+  height: 100%;
+  background: #111;
+}
+.poster-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* === overlay asap === */
+.poster-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px;
+}
+
+.poster-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* asap + gelap bawah */
+  background: radial-gradient(120% 70% at 50% 65%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.14) 35%, rgba(0, 0, 0, 0) 70%), linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.7) 100%);
+  filter: blur(1px);
+  opacity: 0.9;
+}
+
+.poster-card:hover .poster-overlay {
+  opacity: 1;
+}
+
+.poster-actions,
+.poster-meta {
+  position: relative;
+  z-index: 2;
+}
+
+.poster-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.poster-meta {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* badge umur pojok */
+.poster-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+  z-index: 3;
+}
+
+/* Mobile: karena tidak ada hover, overlay ditampilin */
+@media (max-width: 768px) {
+  .poster-overlay {
+    opacity: 1;
+  }
+  .poster-overlay::before {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.75) 100%);
+  }
+  .poster-actions .btn {
+    font-size: 12px;
+  }
+}
+
+.section-title {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.tab-soft .nav-link {
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  transition: all 0.25s ease;
+}
+
+.tab-soft .nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tab-soft .nav-link.active {
+  color: #fff;
+  background: linear-gradient(135deg, #1f6fff, #174fbf);
+  border-color: rgba(31, 111, 255, 0.55);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+
+.multi-carousel .carousel-control-prev,
+.multi-carousel .carousel-control-next {
+  width: 54px;
+}
+.multi-carousel .carousel-control-prev-icon,
+.multi-carousel .carousel-control-next-icon {
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.6));
+}
+
+.carousel-inner {
+  overflow: visible;
+}
+
+/* ukuran card khusus halaman grid movies */
+.poster-card--grid {
+  height: 420px;
+}
+@media (max-width: 768px) {
+  .poster-card--grid {
+    height: 320px;
+  }
+}
+
+.movie-wrap {
+  cursor: pointer;
+}
+
+/* coming soon: pita tipis di tepi kiri */
+.poster-card .coming-ribbon {
+  position: absolute;
+  top: 14px;
+  left: 0;
+
+  height: 30px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+
+  color: #dbe9ff;
+
+  background: linear-gradient(135deg, #0e2a52, #163a70);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius: 0 999px 999px 0;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 8px 20px rgba(0, 0, 0, 0.6);
+
+  z-index: 6;
+}
+
+.poster-card--grid .poster-media img {
+  object-fit: cover;
+  object-position: center; /* lebih aman untuk poster yang teksnya di bawah */
+}
+
+/* DETAIL PAGE */
+.poster-card--detail {
+  height: auto;
+  aspect-ratio: 2 / 3;
+}
+
+.poster-card--detail .poster-media img {
+  object-fit: contain; /* jangan crop */
+}
+
+/* Navbar spacing + feel */
+.cinem4-nav .navbar-brand {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.cinem4-nav .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.6rem 0.85rem;
+}
+
+.cinem4-nav .nav-link:hover {
+  color: #fff;
+}
+
+.cinem4-nav .nav-link.active {
+  color: #fff;
+}
+
+/* Mobile: biar kanan (lokasi+join) full lebar dan rapi */
+@media (max-width: 991.98px) {
+  .cinem4-nav .dropdown,
+  .cinem4-nav a.btn {
+    width: 100%;
+  }
+  .cinem4-nav .d-flex.align-items-center.gap-2.gap-lg-3 {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+}
+
+/* =========================
+   BOOKING PAGE (FINAL)
+   ========================= */
+
+/* HERO */
+.booking-hero {
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+.booking-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  transform: scale(1.05);
+  opacity: 0.75;
+  z-index: 1;
+}
+.booking-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.15) 100%);
+  z-index: 2;
+}
+.booking-hero-content {
+  position: relative;
+  z-index: 4;
+  padding: 52px 0 56px;
+}
+
+/* lengkung bawah hero */
+.booking-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80px;
+  background: linear-gradient(180deg, transparent 0%, #070b14 100%);
+  z-index: 3;
+}
+
+/* text */
+.booking-title {
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.booking-meta {
+  display: grid;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.booking-meta i {
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 8px;
+}
+
+/* SCREEN IMAGE (pakai file screen.png) */
+.screen-img {
+  width: min(520px, 92%);
+  height: auto;
+  display: block;
+  margin: 0 auto 6px;
+}
+
+/* SEAT MAP WRAP */
+.seat-wrap {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.seat-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* aisle (gang tengah) setelah kursi ke-4 */
+.seat-row .seat:nth-child(4) {
+  margin-right: 22px;
+}
+
+/* =========================
+   SEAT with SVG mask (seatDefault.svg)
+   ========================= */
+.seat {
+  /* ukuran */
+  width: 44px;
+  height: 34px;
+
+  /* button reset */
+  border: 0;
+  background: transparent;
+  padding: 0;
+
+  /* text */
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.92);
+
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+
+  /* theme variables */
+  --seat-fill: rgba(255, 255, 255, 0.08);
+  --seat-stroke: rgba(255, 255, 255, 0.35);
+  transition: transform 0.15s ease;
+}
+
+/* stroke layer */
+.seat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--seat-stroke);
+  -webkit-mask: url("../ui/seatDefault.svg") no-repeat center / contain;
+  mask: url("../ui/seatDefault.svg") no-repeat center / contain;
+  transform: scale(1.07);
+  z-index: -2;
+}
+
+/* fill layer */
+.seat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--seat-fill);
+  -webkit-mask: url("../ui/seatDefault.svg") no-repeat center / contain;
+  mask: url("../ui/seatDefault.svg") no-repeat center / contain;
+  z-index: -1;
+}
+
+/* hover */
+.seat:hover {
+  transform: translateY(-2px);
+  --seat-fill: rgba(31, 111, 255, 0.25);
+  --seat-stroke: rgba(31, 111, 255, 0.85);
+}
+
+/* selected */
+.seat.is-selected {
+  --seat-fill: rgba(31, 111, 255, 0.95);
+  --seat-stroke: #fff;
+  color: #fff;
+  filter: drop-shadow(0 0 8px rgba(31, 111, 255, 0.9));
+}
+
+/* booked */
+.seat.is-booked {
+  cursor: not-allowed;
+  opacity: 0.35;
+  color: rgba(255, 255, 255, 0.25);
+  --seat-fill: rgba(255, 255, 255, 0.03);
+  --seat-stroke: rgba(255, 255, 255, 0.15);
+}
+
+/* keyboard focus */
+.seat:focus-visible {
+  outline: 0;
+  transform: translateY(-2px);
+  --seat-stroke: rgba(31, 111, 255, 0.85);
+}
+
+/* =========================
+   LEGEND (pakai SVG juga)
+   ========================= */
+.seat-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.legend-seat {
+  width: 20px;
+  height: 16px;
+  display: inline-block;
+  -webkit-mask: url("../ui/seatDefault.svg") no-repeat center / contain;
+  mask: url("../ui/seatDefault.svg") no-repeat center / contain;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.legend-seat.available {
+  background: rgba(255, 255, 255, 0.12);
+}
+.legend-seat.booked {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0.6;
+}
+.legend-seat.selected {
+  background: rgba(31, 111, 255, 0.85);
+  opacity: 1;
+}
+.legend-seat.couple {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .booking-title {
+    font-size: 26px;
+  }
+
+  .screen-img {
+    width: min(440px, 92%);
+  }
+
+  .seat {
+    width: 38px;
+    height: 32px;
+    font-size: 10px;
+  }
+
+  .seat-row {
+    gap: 8px;
+  }
+  .seat-row .seat:nth-child(4) {
+    margin-right: 16px;
+  }
+}
+/* ===== PROMO PAGE SIMPLE ===== */
+.promo-tab.btn-outline-primary {
+  color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(31, 111, 255, 0.55);
+}
+.promo-tab.btn-outline-primary:hover {
+  color: #fff;
+  background: rgba(31, 111, 255, 0.16);
+}
+.promo-tab.btn-primary {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.promo-card {
+  border-radius: 14px;
+  overflow: hidden;
+}
+.promo-thumb {
+  height: 210px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.promo-title {
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* varian arah */
+.reveal-left {
+  transform: translateX(-18px);
+}
+.reveal-right {
+  transform: translateX(18px);
+}
+.reveal-left.is-in,
+.reveal-right.is-in {
+  transform: translateX(0);
+}
+
+/* delay util (opsional) */
+.reveal.d1 {
+  transition-delay: 0.06s;
+}
+.reveal.d2 {
+  transition-delay: 0.12s;
+}
+.reveal.d3 {
+  transition-delay: 0.18s;
+}
+.reveal.d4 {
+  transition-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== CINEMA PAGE ===== */
+.cinema-hero {
+  position: relative;
+  min-height: 340px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+.cinema-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  transform: scale(1.04);
+  opacity: 0.75;
+}
+.cinema-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.15) 100%);
+}
+.cinema-hero-content {
+  position: relative;
+  padding: 80px 0 60px;
+}
+
+.cinema-search {
+  margin-top: -34px;
+  position: relative;
+  z-index: 3;
+}
+
+.cinema-card {
+  overflow: hidden;
+  border-radius: 18px;
+}
+.cinema-thumb {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* fix dropdown option */
+select.form-select {
+  background-color: rgba(20, 20, 30, 0.95) !important;
+  color: #fff !important;
+}
+
+select.form-select option {
+  background-color: #111827;
+  color: #fff;
+}
+
+.poster-keen-wrap {
+  position: relative;
+}
+
+.poster-keen {
+  overflow: hidden;
+}
+
+.poster-keen-slide {
+  min-width: 0;
+  display: flex;
+}
+
+.poster-keen-slide .movie-wrap {
+  width: 100%;
+}
+
+.poster-keen-nav {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(9, 16, 31, 0.72);
+  color: #fff;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.poster-keen-nav:hover {
+  background: rgba(20, 33, 60, 0.95);
+  border-color: rgba(31, 111, 255, 0.45);
+}
+
+.poster-keen-prev {
+  left: -8px;
+}
+
+.poster-keen-next {
+  right: -8px;
+}
+
+@media (max-width: 767px) {
+  .poster-keen-nav {
+    display: none;
+  }
+}
+
+/* ==============================================
+   MOVIE DETAIL — JADWAL SECTION
+   Tambahkan blok ini di bagian bawah style.css
+   ============================================== */
+
+/* Filter bar */
+.sched-filter-bar {
+  padding: 0;
+  overflow: hidden;
+}
+.sched-filter-inner {
+  display: flex;
+  align-items: stretch;
+  min-height: 68px;
+}
+
+/* Dropdown bioskop */
+.sched-cinema-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6);
+  position: relative;
+}
+.sched-select {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 20px;
+  min-width: 170px;
+}
+.sched-select option {
+  background: #0d1727;
+  color: #fff;
+}
+.sched-chevron {
+  position: absolute;
+  right: 20px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+.sched-cinema-static {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Divider vertikal */
+.sched-vdivider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  margin: 14px 0;
+}
+
+/* Date scroll */
+.sched-date-scroll {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 8px 16px;
+  scrollbar-width: none;
+  flex: 1;
+}
+.sched-date-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.sched-date-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 52px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  line-height: 1.2;
+  padding: 0 6px;
+}
+.sched-date-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.sched-date-btn.active {
+  background: var(--c4-primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(31, 111, 255, 0.35);
+}
+.sched-date-m {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+.sched-date-d {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+.sched-date-w {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Empty state */
+.sched-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 56px 20px;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Cinema group card */
+.sched-group {
+  overflow: hidden;
+}
+
+.sched-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.2s ease;
+}
+.sched-group-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sched-gname {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+.sched-gcity {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.sched-caret {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.25s ease;
+}
+.sched-group.collapsed .sched-caret {
+  transform: rotate(180deg);
+}
+.sched-group.collapsed .sched-group-body {
+  display: none;
+}
+
+/* Studio rows */
+.sched-group-body {
+  padding: 4px 0;
+}
+.sched-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 20px;
+  flex-wrap: wrap;
+}
+.sched-row-label {
+  min-width: 190px;
+  flex-shrink: 0;
+  padding-top: 5px;
+}
+.sched-sname {
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+}
+.sched-sprice {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.sched-row-hr {
+  border-color: rgba(255, 255, 255, 0.06);
+  margin: 0 20px;
+  opacity: 1;
+}
+
+/* Time buttons */
+.sched-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sched-time-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  letter-spacing: 0.4px;
+}
+.sched-time-btn:hover {
+  background: var(--c4-primary);
+  border-color: var(--c4-primary);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(31, 111, 255, 0.38);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .sched-filter-inner {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+  .sched-cinema-wrap {
+    padding: 12px 16px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+  }
+  .sched-vdivider {
+    display: none;
+  }
+  .sched-date-scroll {
+    padding: 8px 12px;
+  }
+  .sched-row {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  .sched-row-label {
+    min-width: unset;
+    padding-top: 0;
+  }
+  .sched-group-header {
+    padding: 14px 16px;
+  }
+  .sched-row-hr {
+    margin: 0 16px;
+  }
+}
+/* ==============================================
+   MOVIE DETAIL — HERO + FILTER OVERLAP
+   Tambahkan/gantikan bagian md-* di style.css
+   ============================================== */
+
+/* ── HERO ── */
+.md-hero {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  /* padding bawah ekstra agar filter overlap bisa menggantung */
+  padding-bottom: 60px;
+  border-bottom: none;
+}
+.md-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  transform: scale(1.04);
+  opacity: 0.7;
+  z-index: 1;
+}
+.md-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 11, 20, 0.5) 0%, rgba(7, 11, 20, 0.9) 70%, rgba(7, 11, 20, 1) 100%), linear-gradient(90deg, rgba(7, 11, 20, 0.8) 0%, rgba(7, 11, 20, 0.15) 100%);
+  z-index: 2;
+}
+.md-hero-body {
+  position: relative;
+  z-index: 3;
+  padding-top: 48px;
+  padding-bottom: 0;
+}
+
+.md-hero-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+/* Poster */
+.md-poster-col {
+  flex-shrink: 0;
+}
+.md-poster-frame {
+  position: relative;
+  width: 150px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.65);
+}
+.md-poster-frame img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.md-poster-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(220, 53, 69, 0.85);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+
+/* Info */
+.md-info-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.md-meta-top {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 8px;
+}
+.md-dot {
+  margin: 0 6px;
+  opacity: 0.4;
+}
+
+.md-title {
+  font-size: clamp(24px, 3.8vw, 44px);
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  line-height: 1.1;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.md-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.md-tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.07);
+  letter-spacing: 0.4px;
+}
+.md-tag-age {
+  background: rgba(220, 53, 69, 0.18);
+  border-color: rgba(220, 53, 69, 0.5);
+  color: #ff8a95;
+}
+.md-tag-soon {
+  background: rgba(31, 111, 255, 0.18);
+  border-color: rgba(31, 111, 255, 0.5);
+  color: #7eb8ff;
+}
+
+/* Synopsis scrollable box */
+.md-synopsis-box {
+  max-width: 620px;
+  max-height: 72px; /* 3 baris collapsed */
+  overflow: hidden;
+  margin-bottom: 6px;
+  transition: max-height 0.35s ease;
+  /* scrollbar saat expanded */
+}
+.md-synopsis-box.expanded {
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(31, 111, 255, 0.5) rgba(255, 255, 255, 0.06);
+}
+.md-synopsis-box.expanded::-webkit-scrollbar {
+  width: 5px;
+}
+.md-synopsis-box.expanded::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 99px;
+}
+.md-synopsis-box.expanded::-webkit-scrollbar-thumb {
+  background: rgba(31, 111, 255, 0.5);
+  border-radius: 99px;
+}
+
+.md-syn-text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0;
+  padding-right: 6px;
+}
+.md-syn-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--c4-primary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.md-syn-toggle:hover {
+  text-decoration: underline;
+}
+
+/* Action buttons */
+.md-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.md-btn-trailer {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.md-btn-trailer:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.md-btn-book {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  border-radius: 999px;
+  background: var(--c4-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(31, 111, 255, 0.38);
+}
+.md-btn-book:hover {
+  background: #1a5fd4;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.md-btn-soon {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: not-allowed;
+}
+
+.md-btn-back {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.md-btn-back:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+/* ── FILTER OVERLAP (menggantung di bawah hero) ── */
+.md-filter-overlap {
+  margin-top: -40px; /* naik ke atas, overlap hero */
+  position: relative;
+  z-index: 10;
+  padding-bottom: 0;
+}
+
+/* Filter bar inner */
+.md-filter-bar {
+  padding: 0;
+  overflow: hidden;
+}
+.md-filter-inner {
+  display: flex;
+  align-items: stretch;
+  min-height: 68px;
+}
+
+/* Cinema static (1 bioskop) */
+.sched-cinema-static {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .md-hero {
+    padding-bottom: 50px;
+  }
+  .md-hero-inner {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .md-poster-frame {
+    width: 110px;
+  }
+  .md-hero-body {
+    padding-top: 28px;
+  }
+  .md-title {
+    font-size: 24px;
+  }
+  .md-filter-overlap {
+    margin-top: -30px;
+  }
+  .md-filter-inner {
+    flex-wrap: wrap;
+    min-height: auto;
+  }
+  .sched-cinema-wrap,
+  .sched-cinema-static {
+    padding: 12px 16px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+  }
+  .sched-vdivider {
+    display: none;
+  }
+  .sched-date-scroll {
+    padding: 8px 12px;
+  }
+}
+
+body > footer {
+  flex-shrink: 0;
+}
+
+.verify-page {
+  width: 100%;
+}
+
+.verify-card {
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+}
+
+@media (max-width: 576px) {
+  body > footer .container {
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .verify-page {
+    align-items: flex-start !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .verify-card {
+    border-radius: 16px;
+  }
+}
