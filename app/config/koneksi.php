@@ -9,6 +9,7 @@ $dbPort = (int) cinem4_env('DB_PORT', 3306);
 
 $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName, $dbPort);
 
+
 if ($conn->connect_error) {
     die('Koneksi gagal: ' . $conn->connect_error);
 }
