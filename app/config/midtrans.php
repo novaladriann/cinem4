@@ -66,3 +66,4 @@ if (!function_exists('midtransMaskKey')) {
         return substr($key, 0, 8) . str_repeat('*', max(8, strlen($key) - 14)) . substr($key, -6);
     }
 }
+
