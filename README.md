@@ -366,6 +366,10 @@ Anggota kelompok:
 - Ahmad Ali Murtadlo
 
 ---
+## Video Demo
+Detail web dapat dilihat pada video demo berikut: https://youtu.be/yS2l6LNQVBg
+
+---
 
 ## Lisensi
 
